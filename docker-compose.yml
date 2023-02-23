@@ -1,0 +1,64 @@
+version: '3'
+services:
+  auth_service:
+    build: ./Auth
+    command: npm run start
+    volumes:
+      - .:/Auth/app/
+      - Auth/app/node_modules
+    env_file:
+      - ./Auth/.env
+    ports:
+      - "3004:3000"
+  likes:
+    build: ./likes
+    command: npm run start
+    env_file:
+      - ./likes/.env
+    volumes:
+      - .:/likes/app/
+      - /likes/app/node_modules
+    ports:
+      - "3005:4001"
+#   posts:
+#     build: ./Post
+#     command: npm run start
+#     volumes:
+#       - .:/usr/app/
+#       - /usr/app/node_modules
+#     ports:
+#       - "3003:3003"
+  webserver:
+    image: nginx
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      
+#   rabbitmq:
+#     image: rabbitmq:3.9.27-management-alpine
+#     container_name: 'rabbitmq'
+#     ports:
+#         - 5672:5672
+#         - 15672:15672
+#    # volumes:
+#     #    - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+#     #    - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+#     networks:
+#         - rabbitmq_go_net
+
+# networks:
+#   rabbitmq_go_net:
+#     driver: bridge
+
+
+# #    depends_on:
+# #      - postgres
+# #    environment:
+# #      DATABASE_URL: postgres://todoapp@postgres/todos
+# #  postgres:
+# #    image: postgres:9.6.2-alpine
+# #    environment:
+# #      POSTGRES_USER: todoapp
+# #      POSTGRES_DB: todos
