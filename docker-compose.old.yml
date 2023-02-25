@@ -1,0 +1,79 @@
+version: '3'
+services:
+  auth_service:
+    build:
+     context: ./Auth
+     dockerfile: Dockerfile
+    volumes:
+      - ./:/Auth/app
+      - /Auth/node_modules # Remove this if you have pure JS dependencies
+    ports:
+      - "4000:4000"
+    # build:
+    #   context: ./Auth
+    #   dockerfile: Dockerfile
+    # volumes:
+    #   - ./Auth:/Auth/app
+    #   - /Auth/app/node_modules
+    # env_file:
+    #   - ./Auth/.env
+    # ports:
+    #   - "3004:3010"
+
+
+
+#   likes_service:
+#     build: ./likes
+#     command: npm run start
+#     env_file:
+#       - ./likes/.env
+#     volumes:
+#       - .:/app
+#       - /app/node_modules
+#     ports:
+#       - "3005:3011"
+
+#   posts_service:
+#     build: ./Post
+#     command: npm run dev
+#     volumes:
+#       - .:/app
+#       - /app/node_modules
+#     ports:
+#       - "3006:3012"
+
+#   webserver:
+#     image: nginx
+#     container_name: webserver
+#     volumes:
+#       - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+#     restart: unless-stopped
+#     ports:
+#       - "80:80"
+#       - "443:443"
+      
+#   rabbitmq:
+#     image: rabbitmq:3-management-alpine
+#     container_name: 'rabbitmq'
+#     ports:
+#         - 5672:5672
+#         - 15672:15672
+#     volumes:
+#         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+#         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+#     networks:
+#         - rabbitmq_go_net
+
+# networks:
+#   rabbitmq_go_net:
+#     driver: bridge
+
+# #    depends_on:
+# #      - postgres
+# #    environment:
+# #      DATABASE_URL: postgres://todoapp@postgres/todos
+# #  postgres:
+# #    image: postgres:9.6.2-alpine
+# #    environment:
+# #      POSTGRES_USER: todoapp
+# #      POSTGRES_DB: todos
