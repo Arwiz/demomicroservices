@@ -1,0 +1,54 @@
+Orgnization
+  name
+  org_type
+  id
+
+PlantOffice
+  name
+  location_lat
+  Location_long
+
+
+User
+  first_name
+  last_name
+  mobile
+  secondary_phone
+  email
+  city
+  mailing_addresss
+  official_address
+  avatar
+
+
+Shift
+  start_time
+  endT_ime
+  over_night
+
+Roaster
+  date
+  shift_id
+  user_id
+  actual_start_time
+  actual_end_time
+
+  
+
+
+
+
+
+
+
+User Pool Pool
+
+
+
+
+
+
+
+
+
+
